@@ -59,7 +59,21 @@ class LandingPage extends Component {
         <div>
           <div>
             <AppBar
-              title="Title"
+              style={{height:100, backgroundColor: "white"}}
+              titleStyle={{marginTop:7, height:85, backgroundColor: "white"}}
+              title={
+                <div style={{height:"100%"}}>
+                  <img style={{height: "100%"}} src={require("../blue_kang_v2.png")} />
+                  <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> KANGA </span>
+                </div>
+              }
+              iconStyleRight = {{marginTop:7, height:85}}
+              iconElementRight={
+                <div style={{paddingTop:20, height:"100%"}}>
+                  <FlatButton labelStyle={{fontSize:"20px"}} label="Sign Up" />
+                  <FlatButton labelStyle={{fontSize:"20px"}} label="Log In" />
+                </div>
+                }
             />
           </div>
           <div>

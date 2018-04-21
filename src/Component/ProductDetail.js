@@ -7,6 +7,9 @@ import axios from 'axios';
 import CircularProgress from 'material-ui/CircularProgress';
 import SocialShare from 'material-ui/svg-icons/social/share';
 import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
+import { Button, ButtonToolbar, ProgressBar } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import Countdown from 'react-countdown-now';
 var parseString = require('xml2js').parseString;
 
 class ProductDetail extends Component {
@@ -76,11 +79,12 @@ class ProductDetail extends Component {
           </Card>
         </div>
         <div style={{width:"100%", display:"flex"}}>
-          <div style={{paddingRight:100, paddingLeft:100, paddingTop:50, width:"50%",float:"left"}}>
-            <h3>Authentic Australian Honey - Made with love</h3>
+          <div style={{paddingRight:100, paddingLeft:100, paddingTop:50, width:"60%",float:"left"}}>
+            <h5>Authentic Australian Honey - Made with love</h5>
             <h1>{this.props.title}</h1>
-            <h2>Red Hill, Victoria</h2>
-            <h3>{this.props.description}</h3>
+            <h3>Red Hill, Victoria</h3>
+            <br />
+            {this.props.description}
           </div>
           {this.state.loading ?
           <div style={{marginTop: 100, display: 'flex', justifyContent: 'center', marginLeft: 5, flexGrow: 1}}>
@@ -94,11 +98,25 @@ class ProductDetail extends Component {
           <div style={{marginTop: 100, marginLeft: 50, marginRight: 50, flexGrow: 1}}>
             <Card>
               <CardActions style={{marginLeft: 50, marginRight: 50, paddingBottom: 20}}>
-                <h1 style={{display:"inline-block"}}>¥{this.props.price} RMB</h1><span>per 500 ml</span>
+                <h1 style={{display:"inline-block", fontWeight: "bold"}}>¥{this.props.price} RMB</h1><span style={{fontWeight: "bold"}}>per 500 ml</span>
+                <div style={{paddingBottom: 10}}>
+                  <ProgressBar bsStyle="danger" now={15} />
+                </div>
+                <div style={{paddingBottom: 10}}>
+                  <span style={{fontWeight: "bold"}}>15 purchased</span>
+                </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
-                  <RaisedButton style={{height: '20px'}} secondary={true} onClick={() => this.getAliPay()}>
-                    <span style={{paddingLeft:100, paddingRight:100, fontSize: 36, color: "white"}}>Buy In</span>
-                  </RaisedButton>
+                  <Button block bsStyle="danger" bsSize="large" onClick={() => this.getAliPay()}>
+                    Buy In
+                  </Button>
+                </div>
+              </CardActions>
+              <CardActions style={{marginLeft: 50, marginRight: 50, paddingBottom: 20}}>
+                <div style={{display: "flex", justifyContent: "center", fontWeight: "bold", fontSize: 36}}>
+                  <Countdown date={Date.now() + 1000000} />
+                </div>
+                <div style={{display: "flex", justifyContent: "center", fontWeight: "bold", fontSize: 14, color: "#ECECEC"}}>
+                  Days : Hours : Minutes : Seconds
                 </div>
               </CardActions>
             </Card>
