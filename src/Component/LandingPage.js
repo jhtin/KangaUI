@@ -8,6 +8,15 @@ import ActionShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
 import axios from 'axios';
 import ProductDetail from './ProductDetail'
 import FlatButton from 'material-ui/FlatButton';
+import Grid from 'react-bootstrap/lib/Grid';
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+import Jumbotron from 'react-bootstrap/lib/Jumbotron';
+
+import Paper from 'material-ui/Paper';
+import Image from "../header.jpg";
+
+
 
 class LandingPage extends Component {
   constructor(props){
@@ -75,6 +84,20 @@ class LandingPage extends Component {
               title="Title"
             />
           </div>
+
+          <Row id = "header">
+
+            <img id = "backgroundHeader" src = {require("../header.jpg")}/>
+
+            <Row>
+              <Col md={6} mdOffset={2} style = {{marginTop: 200,}}>
+                <h1>Group buy authentic products with Kanga</h1>
+                <Paper style={{ height: 75}}>Hi</Paper>
+              </Col>
+            </Row>
+          </Row>
+          <Grid>
+
           {this.state.loading ?
           <div style={{marginTop: 100, display: 'flex', justifyContent: 'center'}}>
             <CircularProgress size={80} thickness={5} />
@@ -99,7 +122,10 @@ class LandingPage extends Component {
               ))}
             </GridList>
           </div>}
+        </Grid>
         </div>
+
+
       );
     }
   }
