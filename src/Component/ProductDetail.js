@@ -7,9 +7,11 @@ import axios from 'axios';
 import CircularProgress from 'material-ui/CircularProgress';
 import SocialShare from 'material-ui/svg-icons/social/share';
 import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
-import { Button, ButtonToolbar, ProgressBar } from 'react-bootstrap';
+import { Button, ButtonToolbar, ProgressBar, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Countdown from 'react-countdown-now';
+import Dialog from 'material-ui/Dialog';
+// import Modal from 'react-modal'
 var parseString = require('xml2js').parseString;
 
 class ProductDetail extends Component {
@@ -22,6 +24,14 @@ class ProductDetail extends Component {
     }
   }
 
+  handleOpen = () => {
+    this.setState({showQR: true});
+  };
+
+  handleClose = () => {
+    this.setState({showQR: false});
+  };
+
   getAliPay(){
     console.log("amount", this.props.price)
     axios.get('http://47.74.64.81/payment', {
@@ -33,7 +43,7 @@ class ProductDetail extends Component {
       console.log(response);
       parseString(response.data, function (err, result) {
         console.log(result);
-        let qrLink =result.alipay.response[0].alipay[0].pic_url[0];
+        let qrLink =result.alipay.response[0].alipay[0].small_pic_url[0];
         console.log(qrLink);
         this.setState({loading:false, qrLink: qrLink, showQR: true})
       }.bind(this));
@@ -45,6 +55,20 @@ class ProductDetail extends Component {
   }
 
   render() {
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onClick={this.handleClose}
+      />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        keyboardFocused={true}
+        onClick={this.handleClose}
+      />,
+    ];
+
     return (
       <div>
         <div>
@@ -91,10 +115,20 @@ class ProductDetail extends Component {
             <CircularProgress size={80} thickness={5} />
           </div> : null}
           {(this.state.showQR && !this.state.loading) ?
-          <div style={{marginLeft: 5, flexGrow: 1}}>
-            <Payments qrLink={this.state.qrLink} />
-          </div> : null}
-          {(!this.state.showQR && !this.state.loading) ?
+            <div className="static-modal">
+              <Modal.Dialog>
+                <Modal.Header>
+                  <Modal.Title>AliPay QR</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body><Payments qrLink={this.state.qrLink} /></Modal.Body>
+
+                <Modal.Footer>
+                  <Button onClick={this.handleClose}>Close</Button>
+                </Modal.Footer>
+              </Modal.Dialog>
+            </div> : null}
+          {(!this.state.loading) ?
           <div style={{marginTop: 100, marginLeft: 50, marginRight: 50, flexGrow: 1}}>
             <Card>
               <CardActions style={{marginLeft: 50, marginRight: 50, paddingBottom: 20}}>
@@ -120,7 +154,7 @@ class ProductDetail extends Component {
                 </div>
               </CardActions>
             </Card>
-          </div> : null}
+          </div>: null}
         </div>
       </div>
     );
@@ -137,6 +171,20 @@ const style = {
   },
   button: {
     marginRight: 5
+  },
+  content: {
+    border: '0',
+    borderRadius: '4px',
+    bottom: "auto",
+    height: 300,  // set height
+    left: '50%',
+    padding: '2rem',
+    position: 'fixed',
+    right: 'auto',
+    top: '50%', // start from center
+    transform: 'translate(-50%,-' + 0 + ')', // adjust top "up" based on height
+    width: '40%',
+    maxWidth: '40rem'
   }
 }
 

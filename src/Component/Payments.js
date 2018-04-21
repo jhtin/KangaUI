@@ -16,7 +16,7 @@ class Payments extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div style={{display: 'flex', justifyContent: 'center', flexGrow: 1}}>
           <img
           src={this.props.qrLink}
           />

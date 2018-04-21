@@ -8,6 +8,7 @@ import ActionShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
 import axios from 'axios';
 import ProductDetail from './ProductDetail'
 import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 class LandingPage extends Component {
   constructor(props){
@@ -63,13 +64,19 @@ class LandingPage extends Component {
               titleStyle={{marginTop:7, height:85, backgroundColor: "white"}}
               title={
                 <div style={{height:"100%"}}>
-                  <img style={{height: "100%"}} src={require("../blue_kang_v2.png")} />
+                  <img onClick={() => this.setState({productShow:false})} style={{height: "100%"}} src={require("../blue_kang_v2.png")} />
                   <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> KANGA </span>
                 </div>
               }
               iconStyleRight = {{marginTop:7, height:85}}
               iconElementRight={
                 <div style={{paddingTop:20, height:"100%"}}>
+                  <FloatingActionButton mini={true} secondary={true} style={{marginRight: 20}} >
+                    <span style={{color:"white"}}>CH</span>
+                  </ FloatingActionButton>
+                  <FloatingActionButton mini={true} style={{marginRight: 20}} >
+                    <span style={{color:"white"}}>EN</span>
+                  </ FloatingActionButton>
                   <FlatButton labelStyle={{fontSize:"20px"}} label="Sign Up" />
                   <FlatButton labelStyle={{fontSize:"20px"}} label="Log In" />
                 </div>
