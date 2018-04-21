@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import {GridList, GridTile} from 'material-ui/GridList';
+import CircularProgress from 'material-ui/CircularProgress';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import ActionShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
 import Modal from 'react-modal';
+import axios from 'axios';
 import ProductDetail from './ProductDetail'
 import FlatButton from 'material-ui/FlatButton';
 
@@ -13,59 +15,11 @@ class LandingPage extends Component {
     super(props)
     this.state = {
       productModal: false,
-      selected: []
+      selected: [],
+      loading: true,
+      tilesData: [],
     }
     this.closeModal = this.closeModal.bind(this);
-    this.tilesData = [
-      {
-        img: 'https://www.abelandcole.co.uk/media/1606_18557_z.jpg',
-        title: 'Product title',
-        producer: 'Producer',
-        description: 'product description',
-        price: '$100',
-        _id: "asdasd"
-      },
-      {
-        img: 'https://www.abelandcole.co.uk/media/1606_18557_z.jpg',
-        title: 'Tasty burger',
-        producer: 'pashminu',
-        description: 'product description',
-        price: '$100',
-        _id: "dfsdfdsfsdv"
-      },
-      {
-        img: 'https://www.abelandcole.co.uk/media/1606_18557_z.jpg',
-        title: 'Camera',
-        producer: 'Danson67',
-        description: 'product description',
-        price: '$100',
-        _id: "sdfdfbgdvxc"
-      },
-      {
-        img: 'https://www.abelandcole.co.uk/media/1606_18557_z.jpg',
-        title: 'Breakfast',
-        producer: 'jill111',
-        description: 'product description',
-        price: '$100',
-        _id: "ijsdfjksdnjdskscnkcs"
-      },
-      {
-        img: 'https://www.abelandcole.co.uk/media/1606_18557_z.jpg',
-        title: 'Tasty burger',
-        producer: 'pashminu',
-        description: 'product description',
-        price: '$100',
-        _id: "sdvbhvdcjndj"
-      },
-      {
-        img: 'https://www.abelandcole.co.uk/media/1606_18557_z.jpg',
-        title: 'Camera',
-        producer: 'Danson67',
-        description: 'product description',
-        price: '$100',
-        _id: "ieuriewuyrieuyuer"
-      },
-    ];
   }
 
   showProduct(product){
@@ -81,30 +35,53 @@ class LandingPage extends Component {
     Modal.setAppElement('body');
  }
 
+ getProducts() {
+  axios.get('http://47.74.64.81/products')
+  .then(function (response) {
+    console.log(response);
+    this.processCatalog(response);
+  }.bind(this))
+  .catch(function (error) {
+    console.log(error);
+  });
+ }
+
+ processCatalog(response){
+   this.setState({loading: false, tilesData: response.data})
+ }
+
+ componentDidMount() {
+   this.getProducts();
+ }
+
   render() {
     return (
       <div>
-        <div>
         {this.state.productModal ?
         null:
-        <AppBar
-          title="Title"
-        />
-        }
+        <div>
+          <AppBar
+            title="Title"
+          />
         </div>
+        }
+        {this.state.loading ?
+        <div style={{marginTop: 100, display: 'flex', justifyContent: 'center'}}>
+          <CircularProgress size={80} thickness={5} />
+        </div> :
         <div style={styles.root}>
           <GridList
             cols = {4}
             cellHeight={400}
             style={styles.gridList}
           >
-            {this.tilesData.map((tile) => (
+            {this.state.tilesData.map((tile) => (
               <GridTile
                 onClick = {() => this.showProduct(tile)}
                 style={styles.card}
                 key={tile._id}
                 title={tile.title}
-                subtitle={<span>by <b>{tile.author}</b></span>}
+                subtitle={<span>by <b>{tile.producer}</b></span>}
                 actionIcon={<IconButton><ActionShoppingCart color="white" /></IconButton>}
               >
                 <img src={tile.img} />
@@ -112,6 +89,7 @@ class LandingPage extends Component {
             ))}
           </GridList>
         </div>
+        }
         <div style={{}}>
           <Modal
             isOpen={this.state.productModal}
