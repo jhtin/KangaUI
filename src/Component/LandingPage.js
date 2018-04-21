@@ -5,7 +5,6 @@ import CircularProgress from 'material-ui/CircularProgress';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import ActionShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
-import Modal from 'react-modal';
 import axios from 'axios';
 import ProductDetail from './ProductDetail'
 import FlatButton from 'material-ui/FlatButton';
@@ -14,7 +13,7 @@ class LandingPage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      productModal: false,
+      productShow: false,
       selected: [],
       loading: true,
       tilesData: [],
@@ -24,7 +23,7 @@ class LandingPage extends Component {
 
   showProduct(product){
     let selected = [<ProductDetail {...product} key={0}/>]
-    this.setState({productModal:true, selected:selected})
+    this.setState({productShow:true, selected:selected})
   }
 
   closeModal(){
@@ -32,7 +31,7 @@ class LandingPage extends Component {
   }
 
   componentWillMount() {
-    Modal.setAppElement('body');
+
  }
 
  getProducts() {
@@ -54,51 +53,61 @@ class LandingPage extends Component {
    this.getProducts();
  }
 
+  renderApp(){
+    if (this.state.productShow){
+      return(
+        <div>
+          <div>
+            <AppBar
+              title="Title"
+            />
+          </div>
+          <div>
+            {this.state.selected}
+          </div>
+        </div>
+      )
+    }else{
+      return (
+        <div>
+          <div>
+            <AppBar
+              title="Title"
+            />
+          </div>
+          {this.state.loading ?
+          <div style={{marginTop: 100, display: 'flex', justifyContent: 'center'}}>
+            <CircularProgress size={80} thickness={5} />
+          </div> :
+          <div style={styles.root}>
+            <GridList
+              cols = {4}
+              cellHeight={400}
+              style={styles.gridList}
+            >
+              {this.state.tilesData.map((tile) => (
+                <GridTile
+                  onClick = {() => this.showProduct(tile)}
+                  style={styles.card}
+                  key={tile._id}
+                  title={tile.title}
+                  subtitle={<span>by <b>{tile.producer}</b></span>}
+                  actionIcon={<IconButton><ActionShoppingCart color="white" /></IconButton>}
+                >
+                  <img src={tile.img} />
+                </GridTile>
+              ))}
+            </GridList>
+          </div>}
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
-        {this.state.productModal ?
-        null:
-        <div>
-          <AppBar
-            title="Title"
-          />
-        </div>
-        }
-        {this.state.loading ?
-        <div style={{marginTop: 100, display: 'flex', justifyContent: 'center'}}>
-          <CircularProgress size={80} thickness={5} />
-        </div> :
-        <div style={styles.root}>
-          <GridList
-            cols = {4}
-            cellHeight={400}
-            style={styles.gridList}
-          >
-            {this.state.tilesData.map((tile) => (
-              <GridTile
-                onClick = {() => this.showProduct(tile)}
-                style={styles.card}
-                key={tile._id}
-                title={tile.title}
-                subtitle={<span>by <b>{tile.producer}</b></span>}
-                actionIcon={<IconButton><ActionShoppingCart color="white" /></IconButton>}
-              >
-                <img src={tile.img} />
-              </GridTile>
-            ))}
-          </GridList>
-        </div>
-        }
-        <div style={{}}>
-          <Modal
-            isOpen={this.state.productModal}
-            onRequestClose={this.closeModal}
-            contentLabel="Example Modal"
-          >
-            {this.state.selected}
-          </Modal>
-        </div>
+        {this.renderApp()}
       </div>
     );
   }
