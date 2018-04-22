@@ -9,21 +9,6 @@ import axios from 'axios';
 import ProductDetail from './ProductDetail'
 import FlatButton from 'material-ui/FlatButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import Grid from 'react-bootstrap/lib/Grid';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
-import Jumbotron from 'react-bootstrap/lib/Jumbotron';
-import ProgressBar from 'react-bootstrap/lib/ProgressBar';
-
-import Paper from 'material-ui/Paper';
-import Image from "../header.jpg";
-
-import MapsLocalDining from 'material-ui/svg-icons/maps/local-dining';
-import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
-import ActionFavorite from 'material-ui/svg-icons/action/favorite';
-
-
-
 
 class LandingPage extends Component {
   constructor(props){
@@ -115,80 +100,6 @@ class LandingPage extends Component {
           <div style={{marginTop: 100, display: 'flex', justifyContent: 'center'}}>
             <CircularProgress size={80} thickness={5} />
           </div> :
-          <div>
-          <Row id = "header">
-            
-            <img id = "backgroundHeader" src = {require("../header.jpg")}/>
-            <div id = "backgroundOverlay"/>
-            <Grid>
-              <Row>
-              <Col md={9} style = {{marginTop: 100}}>
-                <h1 className = "headerstyle">Group buy authentic Australian products with <span style = {{fontWeight: 600 }}>Kanga</span></h1>
-                
-                <Paper style={{ height: 75}}></Paper>
-
-                <h1 className = "subhead">All vendors verified by nab</h1>
-
-
-              </Col>
-              </Row>
-            </Grid>
-          </Row>
-          <Grid>
-            <Row>
-              <Col md={12}>
-              <h1>Browse categories</h1>
-              </Col>
-              <Col md={3} style = {{marginTop: 10}}>
-                <Paper style = {{ height: 50}}><MapsLocalDining style = {{
-                  width: 50,
-                  height: 50,
-                }}/> 
-                <span className = "cattitles">Food</span>
-                </Paper>
-              </Col>
-              <Col md={3} style = {{marginTop: 10}}>
-                <Paper style = {{ height: 50}}><ImageBlurOn style = {{
-                  width: 50,
-                  height: 50,
-                }}/> 
-                <span className = "cattitles">Jewelery</span>
-                </Paper>
-                </Col>
-
-                <Col md={3} style = {{marginTop: 10}}>
-                <Paper style = {{ height: 50}}><ActionFavorite style = {{
-                  width: 50,
-                  height: 50,
-                }}/> 
-                <span className = "cattitles">Health</span>
-                </Paper>
-              </Col>
-            </Row>
-            <Row style = {{marginTop: 100}}>
-            <Col md={12}>
-              <h1>Essentials for Health</h1>
-              </Col>
-            <Col md= {12}>
-            <Paper style = {{ height: 300}}  className = "inner_div" >
-                <div className = "colorOverlay"/>
-
-                <Col md = {3} style = {{ height: 300, background: "#1d3557"}}> 
-                <div className= "featuretext" style={{paddingTop: '180px'}}>BeesKness Lavender Infused Honey</div>
-
-                  <ProgressBar bsStyle="danger" now={60}/>
-                </Col>
-                <Col md = {9}> 
-
-                  <img className = "featureimage" src = {require("../header.jpg")}/>
-                  <div className = "colorOverlay"/>
-
-                </Col>
-                </Paper>
-            </Col>
-            </Row>
-          </Grid>
-          {/*
           <div style={styles.root}>
             <GridList
               cols = {4}
@@ -208,12 +119,8 @@ class LandingPage extends Component {
                 </GridTile>
               ))}
             </GridList>
-          </div>
-            */}
           </div>}
         </div>
-
-
       );
     }
   }
