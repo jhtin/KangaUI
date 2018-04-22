@@ -23,6 +23,7 @@ import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import ActionSearch from 'material-ui/svg-icons/action/search';
 
 
 class LandingPage extends Component {
@@ -82,6 +83,7 @@ class LandingPage extends Component {
                 <div style={{height:"100%"}}>
                   <img onClick={() => this.setState({productShow:false})} style={{height: "100%"}} src={require("../blue_kang_v2.png")} />
                   <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> KANGA </span>
+
                 </div>
               }
               iconStyleRight = {{marginTop:7, height:85}}
@@ -115,13 +117,16 @@ class LandingPage extends Component {
                 <div style={{height:"100%"}}>
                   <img onClick={() => this.setState({productShow:false})} style={{height: "100%"}} src={require("../blue_kang_v2.png")} />
                   {this.state.isChinese ? 
-                  <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> 忼购 </span>
+                  <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> KANGA | 忼购 </span>
                   :
                   <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> KANGA </span>
                   }
-                  
+                                    <img src = {require("../NAB_Homeside_RGB.jpg")} style={
+                  {height: 50}
+                }/>
                 </div>
               }
+              
               iconStyleRight = {{marginTop:7, height:85}}
               iconElementRight={
                 <div style={{paddingTop:20, height:"100%"}}>
@@ -163,19 +168,34 @@ class LandingPage extends Component {
                   </h1>
                 :
                 <h1 className = "headerstyle">
-                 buy authentic Australian products with <span style = {{fontWeight: 600 }}>Kanga</span>
+                 Group-buy authentic Australian products with <span style = {{fontWeight: 600 }}>Kanga</span>
                  </h1>
                 }
 
-                <Paper style={{ height: 75}}></Paper>
+                <Paper style={{ height: 75}}>
+                <ActionSearch style={{ height: 75, width: 75}}/>
+                </Paper>
+
 
                 {this.state.isChinese ? 
-                <h1 className = "subhead">所有产品经过NAB的验证</h1>
+                <h1 className = "subhead">所有产品经过
+                <img src = {require("../nab-logo.gif")} style={
+                  {height: 50,
+                    display:'inline-block'
+                  }
+                }/>
+                的验证</h1>
 
                 :
-                <h1 className = "subhead">All vendors verified by nab</h1>
+                <h1 className = "subhead">All vendors verified by 
+                                <img src = {require("../nab-logo.gif")} style={
+                  {height: 50,
+                    display:'inline-block'
+                  }
+                }/></h1>
 
                 }
+
 
 
 
@@ -250,7 +270,7 @@ class LandingPage extends Component {
                 </Col>
                 <Col md = {9}>
 
-                  <img className = "featureimage" src={this.state.tilesData[0].img}/>
+                  <img src={this.state.tilesData[0].img}/>
 
 
                 </Col>
