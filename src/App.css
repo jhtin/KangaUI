@@ -26,3 +26,137 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+#backgroundHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1000;
+}
+
+#header {
+  height: 500px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+#backgroundOverlay {
+  background: linear-gradient(to bottom,#1d355788,#1d355765);
+  /*linear-gradient(to right, rgba(0,0,0,0), rgba(255, 217, 159, 0.644));*/
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+}
+
+.headerstyle {
+  font-family: "Century Gothic", "Muli", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 400;
+  color: white;
+  font-size: 58px;
+}
+
+.subhead {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  color: white;
+  font-size: 30px;
+}
+
+.headerontent {
+  font-family: "Century Gothic", "Muli", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 600;
+  color: #1d3557;
+}
+
+.catIcon {
+  width: 50px;
+  height: 50px;
+}
+
+
+.cattitles {
+  font-family: "Century Gothic", "Muli", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 400;
+  font-size: 25pt;
+  color: #1d3557;
+  vertical-align: top;
+  padding-left: 10px;
+}
+
+.colorOverlay {
+  background: #1d3557;
+  /*linear-gradient(to right, rgba(0,0,0,0), rgba(255, 217, 159, 0.644));*/
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+}
+
+
+.smallGradOverlay {
+  background: linear-gradient(to bottom,#1d3557,#1d3557);
+  /*linear-gradient(to right, rgba(0,0,0,0), rgba(255, 217, 159, 0.644));*/
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.featureimage {
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  width: 110%;
+
+}
+
+.inner_div{
+  padding-left:0;
+  padding-right:0;
+  overflow: hidden;
+}
+
+.cattitles {
+  font-family: "Century Gothic", "Muli", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 400;
+  font-size: 25pt;
+  color: #1d3557;
+  vertical-align: top;
+  padding-left: 10px;
+}
+
+.featuretext {
+  font-family: "Century Gothic", "Muli", CenturyGothic, AppleGothic, sans-serif;
+  font-weight: 400;
+  font-size: 18pt;
+  color: #f1faee;
+  vertical-align: top;
+  padding-top: 90px;
+}
