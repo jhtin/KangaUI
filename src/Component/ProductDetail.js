@@ -89,7 +89,7 @@ class ProductDetail extends Component {
                   <RaisedButton style={{marginLeft: 10, marginBottom: 10}} ><span style={{paddingTop:10, paddingBottom:10, paddingLeft:10, paddingRight:10, fontSize: 18}}>View Photos</span></RaisedButton>
                   <RaisedButton style={{marginLeft: 10, marginBottom: 10}} ><span style={{paddingTop:10, paddingBottom:10, paddingLeft:10, paddingRight:10, fontSize: 18}}>{this.props.producer}</span></RaisedButton>
 
-                }
+                
 
                 </div>
 
@@ -117,7 +117,7 @@ class ProductDetail extends Component {
           </Card>
         </div>
         <Grid>
-          
+
         <div style={{width:"100%", display:"flex"}}>
           <div style={{paddingRight:100, paddingLeft:100, paddingTop:50, width:"60%",float:"left"}}>
             <h5>Authentic Australian Honey - Made with love</h5>
@@ -161,19 +161,19 @@ class ProductDetail extends Component {
             </div> : null}
           {(!this.state.loading) ?
           <div style={{marginTop: 100, marginLeft: 50, marginRight: 50, flexGrow: 1}}>
-                            
+
             <Card>
 
               <CardActions style={{marginLeft: 50, marginRight: 50, paddingBottom: 20}}>
-                <h1 style={{display:"inline-block", fontWeight: "bold"}}>¥{this.props.price} RMB</h1><span style={{fontWeight: "bold"}}>per 500 ml</span>
+                <h1 style={{display:"inline-block", fontWeight: "bold"}}>¥{this.props.price} RMB</h1><span style={{fontWeight: "bold"}}>/ 500 ml</span>
                 <div style={{paddingBottom: 10}}>
                   {this.state.tick ?
-                    <ProgressBar style={{backgroundColor:"#5cb85c"}} now={100} /> :
-                    <ProgressBar style={{backgroundColor:"#f0ad4e"}} now={99} />
+                    <ProgressBar now={65} /> :
+                    <ProgressBar now={60} />
                   }
                 </div>
                 <div style={{paddingBottom: 10}}>
-                  <span style={{fontWeight: "bold"}}>99 purchased</span>
+                  <span style={{fontWeight: "bold"}}>60 purchased</span>
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
                   <Button block bsStyle="danger" bsSize="large" onClick={() => this.getAliPay()}>

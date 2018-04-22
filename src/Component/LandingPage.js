@@ -118,7 +118,7 @@ class LandingPage extends Component {
               title={
                 <div style={{height:"100%"}}>
                   <img onClick={() => this.setState({productShow:false})} style={{height: "100%"}} src={require("../blue_kang_v2.png")} />
-                  {this.state.isChinese ? 
+                  {this.state.isChinese ?
                   <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> KANGA | 忼购 </span>
                   :
                   <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> KANGA </span>
@@ -126,7 +126,7 @@ class LandingPage extends Component {
 
                 </div>
               }
-              
+
               iconStyleRight = {{marginTop:7, height:85}}
               iconElementRight={
                 <div style={{paddingTop:20, height:"100%"}}>
@@ -136,12 +136,12 @@ class LandingPage extends Component {
                   <FloatingActionButton mini={true} style={{marginRight: 20}} onClick = {() => this.setState({isChinese: false})} >
                     <span style={{color:"white"}}>EN</span>
                   </ FloatingActionButton>
-                  {this.state.isChinese ? 
+                  {this.state.isChinese ?
                   <FlatButton labelStyle={{fontSize:"20px"}} label="注册" />
                   :
                   <FlatButton labelStyle={{fontSize:"20px"}} label="Sign Up" />
                   }
-                  {this.state.isChinese ? 
+                  {this.state.isChinese ?
                   <FlatButton labelStyle={{fontSize:"20px"}} label="登录" />
                   :
                   <FlatButton labelStyle={{fontSize:"20px"}} label="Log In" />
@@ -162,7 +162,7 @@ class LandingPage extends Component {
             <Grid>
               <Row>
               <Col md={9} style = {{marginTop: 100}}>
-                {this.state.isChinese ? 
+                {this.state.isChinese ?
                   <h1 className = "headerstyle">
                   跟Kanga团购真实澳大利亚产品
                   </h1>
@@ -177,7 +177,7 @@ class LandingPage extends Component {
                 </Paper>
 
 
-                {this.state.isChinese ? 
+                {this.state.isChinese ?
                 <h1 className = "subhead">所有产品经过
                 <img src = {require("../nab-logo.gif")} style={
                   {height: 50,
@@ -187,7 +187,7 @@ class LandingPage extends Component {
                 的验证</h1>
 
                 :
-                <h1 className = "subhead">All vendors verified by 
+                <h1 className = "subhead">All vendors verified by
                                 <img src = {require("../nab-logo.gif")} style={
                   {height: 50,
                     display:'inline-block'
@@ -206,7 +206,7 @@ class LandingPage extends Component {
           <Grid>
             <Row>
               <Col md={12}>
-              {this.state.isChinese ? 
+              {this.state.isChinese ?
                 <h1>搜索类别</h1>
               :
                 <h1>Browse categories</h1>
@@ -217,7 +217,7 @@ class LandingPage extends Component {
                   width: 50,
                   height: 50,
                 }}/>
-                {this.state.isChinese ? 
+                {this.state.isChinese ?
                   <span className = "cattitles">食品</span>
                 :
                   <span className = "cattitles">Food</span>
@@ -229,7 +229,7 @@ class LandingPage extends Component {
                   width: 50,
                   height: 50,
                 }}/>
-                {this.state.isChinese ? 
+                {this.state.isChinese ?
                   <span className = "cattitles">首饰</span>
                 :
                   <span className = "cattitles">Jewelery</span>
@@ -242,7 +242,7 @@ class LandingPage extends Component {
                   width: 50,
                   height: 50,
                 }}/>
-                {this.state.isChinese ? 
+                {this.state.isChinese ?
                   <span className = "cattitles">健康</span>
                 :
                   <span className = "cattitles">Health</span>
@@ -257,22 +257,24 @@ class LandingPage extends Component {
               </Col>
             <Col md= {12}>
             <Paper style = {{ height: 300}}  className = "inner_div" >
-                <div className = "colorOverlay"/>
+                <div className = "colorOverlay" />
 
                 <Col md = {3} style = {{ height: 300, background: "#1d3557"}}>
-                {this.state.isChinese ? 
-                <div className= "featuretext" style={{paddingTop: '180px'}}>BeesKness 薰衣草蜂蜜</div>
-                :
-                <div className= "featuretext" style={{paddingTop: '180px'}}>BeesKness Lavender Infused Honey</div>
-                }
-                  <ProgressBar bsStyle="danger" now={60}/>
-                  <RaisedButton label="view product" onClick = {() => this.showProduct(this.state.tilesData[0])} />
-                </Col>
-                <Col md = {9}>
+                <div style={{width:"100%", display:"flex"}}>
+                  <div style={{marginTop: 25, width:"100%", display:"block"}}>
+                    {this.state.isChinese ?
+                    <h1 style={{color: "white"}}>BeesKness 薰衣草蜂蜜</h1>
+                    :
+                    <h1 style={{color: "white"}}>BeesKness Lavender Infused Honey</h1>
+                    }
+                    <ProgressBar bsStyle="danger" now={60}/>
+                    <div style={{marginTop:5}}>
+                      <RaisedButton label="view product" onClick = {() => this.showProduct(this.state.tilesData[0])} />
+                    </div>
+                  </div>
+                    <img style={{paddingLeft:150}} src={"http://www.marsglobalexim.com/wp-content/uploads/2018/03/cropped-manuka-honey-banner.jpg"}/>
 
-                  <img src={this.state.tilesData[0].img}/>
-
-
+                </div>
                 </Col>
                 </Paper>
             </Col>
