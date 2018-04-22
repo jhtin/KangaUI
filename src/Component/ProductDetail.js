@@ -152,8 +152,8 @@ class ProductDetail extends Component {
                 <h1 style={{display:"inline-block", fontWeight: "bold"}}>¥{this.props.price} RMB</h1><span style={{fontWeight: "bold"}}>per 500 ml</span>
                 <div style={{paddingBottom: 10}}>
                   {this.state.tick ?
-                    <ProgressBar bsStyle="success" now={100} /> :
-                    <ProgressBar bsStyle="danger" now={99} />
+                    <ProgressBar style={{backgroundColor:"#5cb85c"}} now={100} /> :
+                    <ProgressBar style={{backgroundColor:"#f0ad4e"}} now={99} />
                   }
                 </div>
                 <div style={{paddingBottom: 10}}>
