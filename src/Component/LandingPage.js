@@ -83,7 +83,9 @@ class LandingPage extends Component {
                 <div style={{height:"100%"}}>
                   <img onClick={() => this.setState({productShow:false})} style={{height: "100%"}} src={require("../blue_kang_v2.png")} />
                   <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> KANGA </span>
-
+                  <img src = {require("../NAB_Homeside_RGB.jpg")} style={
+                  {height: 50}
+                }/>
                 </div>
               }
               iconStyleRight = {{marginTop:7, height:85}}
@@ -121,9 +123,7 @@ class LandingPage extends Component {
                   :
                   <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> KANGA </span>
                   }
-                                    <img src = {require("../NAB_Homeside_RGB.jpg")} style={
-                  {height: 50}
-                }/>
+
                 </div>
               }
               
