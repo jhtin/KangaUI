@@ -7,11 +7,12 @@ import axios from 'axios';
 import CircularProgress from 'material-ui/CircularProgress';
 import SocialShare from 'material-ui/svg-icons/social/share';
 import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
-import { Button, ButtonToolbar, ProgressBar, Modal } from 'react-bootstrap';
+import { Button, ButtonToolbar, ProgressBar, Modal, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Countdown from 'react-countdown-now';
 import Dialog from 'material-ui/Dialog';
 // import Modal from 'react-modal'
+import Pusher from 'pusher-js';
 var parseString = require('xml2js').parseString;
 
 class ProductDetail extends Component {
@@ -20,7 +21,8 @@ class ProductDetail extends Component {
     this.state = {
       showQR: false,
       loading: false,
-      qrLink: ""
+      qrLink: "",
+      tick: false,
     }
   }
 
@@ -54,21 +56,25 @@ class ProductDetail extends Component {
     this.setState({loading:true})
   }
 
-  render() {
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onClick={this.handleClose}
-      />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
-        onClick={this.handleClose}
-      />,
-    ];
+  componentDidMount(){
+    Pusher.logToConsole = true;
 
+    var pusher = new Pusher('195abd45d1ec0862ec50', {
+      cluster: 'ap1',
+      encrypted: true,
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      console.log("data",data);
+      if (data.hasOwnProperty("message")){
+        pusher.disconnect();
+        this.setState({tick: true});
+      }
+    }.bind(this));
+  }
+
+  render() {
     return (
       <div>
         <div>
@@ -121,7 +127,18 @@ class ProductDetail extends Component {
                   <Modal.Title>AliPay QR</Modal.Title>
                 </Modal.Header>
 
-                <Modal.Body><Payments qrLink={this.state.qrLink} /></Modal.Body>
+                <Modal.Body>
+                {this.state.tick ?
+                  <div>
+                    <Alert bsStyle="success">
+                      <strong>Buy in confirmed!</strong>
+                    </Alert>
+                  </div> :
+                  <div>
+                    <Payments qrLink={this.state.qrLink} />
+                  </div>
+                }
+                </Modal.Body>
 
                 <Modal.Footer>
                   <Button onClick={this.handleClose}>Close</Button>
@@ -134,10 +151,13 @@ class ProductDetail extends Component {
               <CardActions style={{marginLeft: 50, marginRight: 50, paddingBottom: 20}}>
                 <h1 style={{display:"inline-block", fontWeight: "bold"}}>¥{this.props.price} RMB</h1><span style={{fontWeight: "bold"}}>per 500 ml</span>
                 <div style={{paddingBottom: 10}}>
-                  <ProgressBar bsStyle="danger" now={15} />
+                  {this.state.tick ?
+                    <ProgressBar bsStyle="success" now={100} /> :
+                    <ProgressBar bsStyle="danger" now={99} />
+                  }
                 </div>
                 <div style={{paddingBottom: 10}}>
-                  <span style={{fontWeight: "bold"}}>15 purchased</span>
+                  <span style={{fontWeight: "bold"}}>99 purchased</span>
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
                   <Button block bsStyle="danger" bsSize="large" onClick={() => this.getAliPay()}>
