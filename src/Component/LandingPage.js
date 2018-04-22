@@ -33,6 +33,7 @@ class LandingPage extends Component {
       selected: [],
       loading: true,
       tilesData: [],
+      isChinese: true
     }
     this.closeModal = this.closeModal.bind(this);
   }
@@ -89,7 +90,7 @@ class LandingPage extends Component {
                   <FloatingActionButton mini={true} secondary={true} style={{marginRight: 20}} >
                     <span style={{color:"white"}}>CH</span>
                   </ FloatingActionButton>
-                  <FloatingActionButton mini={true} style={{marginRight: 20}} >
+                  <FloatingActionButton mini={true} style={{marginRight: 20}} on >
                     <span style={{color:"white"}}>EN</span>
                   </ FloatingActionButton>
                   <FlatButton labelStyle={{fontSize:"20px"}} label="Sign Up" />
@@ -113,20 +114,33 @@ class LandingPage extends Component {
               title={
                 <div style={{height:"100%"}}>
                   <img onClick={() => this.setState({productShow:false})} style={{height: "100%"}} src={require("../blue_kang_v2.png")} />
+                  {this.state.isChinese ? 
+                  <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> 忼购 </span>
+                  :
                   <span style={{paddingLeft:25,paddingRight:25,color: "black"}}> KANGA </span>
+                  }
+                  
                 </div>
               }
               iconStyleRight = {{marginTop:7, height:85}}
               iconElementRight={
                 <div style={{paddingTop:20, height:"100%"}}>
-                  <FloatingActionButton mini={true} secondary={true} style={{marginRight: 20}} >
+                  <FloatingActionButton mini={true} secondary={true} style={{marginRight: 20} }  onClick = {() => this.setState({isChinese: true})}>
                     <span style={{color:"white"}}>CH</span>
                   </ FloatingActionButton>
-                  <FloatingActionButton mini={true} style={{marginRight: 20}} >
+                  <FloatingActionButton mini={true} style={{marginRight: 20}} onClick = {() => this.setState({isChinese: false})} >
                     <span style={{color:"white"}}>EN</span>
                   </ FloatingActionButton>
+                  {this.state.isChinese ? 
+                  <FlatButton labelStyle={{fontSize:"20px"}} label="注册" />
+                  :
                   <FlatButton labelStyle={{fontSize:"20px"}} label="Sign Up" />
+                  }
+                  {this.state.isChinese ? 
+                  <FlatButton labelStyle={{fontSize:"20px"}} label="登录" />
+                  :
                   <FlatButton labelStyle={{fontSize:"20px"}} label="Log In" />
+                  }
                 </div>
                 }
             />
@@ -143,11 +157,26 @@ class LandingPage extends Component {
             <Grid>
               <Row>
               <Col md={9} style = {{marginTop: 100}}>
-                <h1 className = "headerstyle">Group buy authentic Australian products with <span style = {{fontWeight: 600 }}>Kanga</span></h1>
+                {this.state.isChinese ? 
+                  <h1 className = "headerstyle">
+                  跟Kanga团购真实澳大利亚产品
+                  </h1>
+                :
+                <h1 className = "headerstyle">
+                 buy authentic Australian products with <span style = {{fontWeight: 600 }}>Kanga</span>
+                 </h1>
+                }
 
                 <Paper style={{ height: 75}}></Paper>
 
+                {this.state.isChinese ? 
+                <h1 className = "subhead">所有产品经过NAB的验证</h1>
+
+                :
                 <h1 className = "subhead">All vendors verified by nab</h1>
+
+                }
+
 
 
               </Col>
@@ -157,14 +186,22 @@ class LandingPage extends Component {
           <Grid>
             <Row>
               <Col md={12}>
-              <h1>Browse categories</h1>
+              {this.state.isChinese ? 
+                <h1>搜索类别</h1>
+              :
+                <h1>Browse categories</h1>
+              }
               </Col>
               <Col md={3} style = {{marginTop: 10}}>
                 <Paper style = {{ height: 50}}><MapsLocalDining style = {{
                   width: 50,
                   height: 50,
                 }}/>
-                <span className = "cattitles">Food</span>
+                {this.state.isChinese ? 
+                  <span className = "cattitles">食品</span>
+                :
+                  <span className = "cattitles">Food</span>
+                }
                 </Paper>
               </Col>
               <Col md={3} style = {{marginTop: 10}}>
@@ -172,7 +209,11 @@ class LandingPage extends Component {
                   width: 50,
                   height: 50,
                 }}/>
-                <span className = "cattitles">Jewelery</span>
+                {this.state.isChinese ? 
+                  <span className = "cattitles">首饰</span>
+                :
+                  <span className = "cattitles">Jewelery</span>
+                }
                 </Paper>
                 </Col>
 
@@ -181,21 +222,29 @@ class LandingPage extends Component {
                   width: 50,
                   height: 50,
                 }}/>
-                <span className = "cattitles">Health</span>
+                {this.state.isChinese ? 
+                  <span className = "cattitles">健康</span>
+                :
+                  <span className = "cattitles">Health</span>
+                }
                 </Paper>
               </Col>
             </Row>
             <Row style = {{marginTop: 100}}>
             <Col md={12}>
-              <h1>Essentials for Health</h1>
+              {this.state.isChinese ? <h1> 健康必需品 </h1>
+               : <h1>Essentials for Health</h1>}
               </Col>
             <Col md= {12}>
             <Paper style = {{ height: 300}}  className = "inner_div" >
                 <div className = "colorOverlay"/>
 
                 <Col md = {3} style = {{ height: 300, background: "#1d3557"}}>
+                {this.state.isChinese ? 
+                <div className= "featuretext" style={{paddingTop: '180px'}}>BeesKness 薰衣草蜂蜜</div>
+                :
                 <div className= "featuretext" style={{paddingTop: '180px'}}>BeesKness Lavender Infused Honey</div>
-
+                }
                   <ProgressBar bsStyle="danger" now={60}/>
                   <RaisedButton label="view product" onClick = {() => this.showProduct(this.state.tilesData[0])} />
                 </Col>
