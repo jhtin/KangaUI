@@ -7,7 +7,7 @@ import axios from 'axios';
 import CircularProgress from 'material-ui/CircularProgress';
 import SocialShare from 'material-ui/svg-icons/social/share';
 import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
-import { Button, ButtonToolbar, ProgressBar, Modal, Alert } from 'react-bootstrap';
+import { Button, ButtonToolbar, ProgressBar, Modal, Alert, Grid } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Countdown from 'react-countdown-now';
 import Dialog from 'material-ui/Dialog';
@@ -82,6 +82,8 @@ class ProductDetail extends Component {
             <CardMedia
             overlayContentStyle = {{background:"rgba(0,0,0,0)", height: "100%"}}
             overlay={
+              <Grid>
+
               <div style={{width:"100%", display:"flex"}}>
                 <div style={{marginTop: 400, display: 'flex', flexGrow: 1}}>
                   <RaisedButton style={{marginLeft: 10, marginBottom: 10}} ><span style={{paddingTop:10, paddingBottom:10, paddingLeft:10, paddingRight:10, fontSize: 18}}>View Photos</span></RaisedButton>
@@ -102,12 +104,14 @@ class ProductDetail extends Component {
                   />
                 </div>
               </div>
+              </Grid>
             }
             >
               <img style={style.banner} src={"http://www.marsglobalexim.com/wp-content/uploads/2018/03/cropped-manuka-honey-banner.jpg"} />
             </CardMedia>
           </Card>
         </div>
+        <Grid>
         <div style={{width:"100%", display:"flex"}}>
           <div style={{paddingRight:100, paddingLeft:100, paddingTop:50, width:"60%",float:"left"}}>
             <h5>Authentic Australian Honey - Made with love</h5>
@@ -176,6 +180,7 @@ class ProductDetail extends Component {
             </Card>
           </div>: null}
         </div>
+      </Grid>
       </div>
     );
   }
